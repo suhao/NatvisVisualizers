@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+
+  <UIVisualizer ServiceId="{A452AFEA-3DF6-46BB-9177-C0B08F318025}" Id="1" MenuName="Add to Image Watch" />
+
+  <Type Name="QImageData">
+    <UIVisualizer ServiceId="{A452AFEA-3DF6-46BB-9177-C0B08F318025}" Id="1" />
+  </Type>
+
+  <Type Name="QImageData" ExcludeView="recursive">
+    <Version Name="Qt5Guid.dll"/>
+    <Intrinsic Name="_this" Expression="((Qt5Guid.dll!QImageData*)this)"/>
+    <Intrinsic Name="_tmp" Expression="(int)_this()->format"/>
+    <Intrinsic Name="colorSpace" Expression="(
+               (_tmp()== 4||_tmp()== 5||_tmp()== 6)? 1:
+               (_tmp()== 13)? 2:
+               (_tmp()== 16||_tmp()== 17||_tmp()== 18)? 3:
+               0)"/>
+    <Expand HideRawView="true">
+      <Synthetic Name="[type]">
+        <DisplayString>UINT8</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[channels]">
+        <DisplayString Condition="colorSpace()==1">BGRA</DisplayString>
+        <DisplayString Condition="colorSpace()==2">RGB</DisplayString>
+        <DisplayString Condition="colorSpace()==3">RGBA</DisplayString>
+        <DisplayString>1</DisplayString>
+      </Synthetic>
+      <Item Name="[width]">_this()->width</Item>
+      <Item Name="[height]">_this()->height</Item>
+      <Item Name="[data]">_this()->data</Item>
+      <Item Name="[stride]">_this()->bytes_per_line</Item>
+    </Expand>
+  </Type>
+
+  <Type Name="QImage" ExcludeView="recursive">
+    <DisplayString Condition="d" Optional="true">{d, view(recursive)}</DisplayString>
+    <DisplayString>empty</DisplayString>
+    <Expand>
+      <Item Name="[image]" Condition="d" Optional="true">(QImageData*)d</Item>
+      <ExpandedItem Condition="d" Optional="true">(Qt5Guid.dll!QImageData*)d, view(recursive)</ExpandedItem>
+    </Expand>
+  </Type>
+</AutoVisualizer>

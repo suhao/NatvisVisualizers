@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+
+  <Type Name="QDir">
+    <DisplayString>{*(Qt5Cored.dll!QDirPrivate*)(d_ptr.d)}</DisplayString>
+    <Expand>
+      <ExpandedItem>(Qt5Cored.dll!QDirPrivate*)(d_ptr.d)</ExpandedItem>
+    </Expand>
+  </Type>
+
+  <Type Name="QDirPrivate">
+    <DisplayString ModuleName="Qt5Cored.dll" Condition="absoluteDirEntry.m_filePath.d-&gt;size">{absoluteDirEntry.m_filePath}</DisplayString>
+    <DisplayString ModuleName="Qt5Cored.dll">{dirEntry.m_filePath}</DisplayString>
+  </Type>
+
+  <Type Name="QFileSystemEntry">
+    <DisplayString ModuleName="Qt5Cored.dll">{m_filePath}</DisplayString>
+  </Type>
+
+  <Type Name="QFileInfo">
+    <DisplayString>{*(Qt5Cored.dll!QFileInfoPrivate*)(d_ptr.d)}</DisplayString>
+    <Expand>
+      <ExpandedItem>(Qt5Cored.dll!QFileInfoPrivate*)(d_ptr.d)</ExpandedItem>
+    </Expand>
+  </Type>
+
+  <Type Name="QFileInfoPrivate">
+    <DisplayString ModuleName="Qt5Cored.dll">{fileEntry.m_filePath}</DisplayString>
+  </Type>
+
+  <Type Name="QFile">
+    <DisplayString>{*(Qt5Cored.dll!QFilePrivate*)(d_ptr.d)}</DisplayString>
+    <Expand>
+      <ExpandedItem>(Qt5Cored.dll!QFilePrivate*)(d_ptr.d)</ExpandedItem>
+    </Expand>
+  </Type>
+
+  <Type Name="QFilePrivate">
+    <DisplayString ModuleName="Qt5Cored.dll">{fileName}</DisplayString>
+  </Type>
+
+  <Type Name="ProString">
+    <AlternativeType Name="ProKey" />
+    <DisplayString>{(char*)(&amp;m_string[m_offset]),[m_length]sub}</DisplayString>
+    <Expand>
+    </Expand>
+  </Type>
+
+  <Type Name="XmlOutput">
+    <Intrinsic Name="_buffer" Expression="xmlFile.d_ptr.d->device->d_ptr.d->writeBuffer.m_buf"/>
+    <DisplayString>{_buffer()->buffers[0].chunk,[_buffer()->bufferSize]}{xmlFile.d_ptr.d->writeBuffer}</DisplayString>
+    <Expand>
+      <ExpandedItem>xmlFile</ExpandedItem>
+    </Expand>
+  </Type>
+
+  <Type Name="QTextStream">
+    <Intrinsic Name="_buffer" Expression="d_ptr.d->device->d_ptr.d->writeBuffer.m_buf"/>
+    <DisplayString>{_buffer()->buffers[0].chunk,[_buffer()->bufferSize]}{d_ptr.d->writeBuffer}</DisplayString>
+    <Expand>
+      <Item Name="a">_buffer()->buffers[0].chunk,[_buffer()->bufferSize]</Item>
+      <Item Name="b">d_ptr.d->writeBuffer</Item>
+    </Expand>
+  </Type>
+
+</AutoVisualizer>
